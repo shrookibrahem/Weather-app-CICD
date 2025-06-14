@@ -77,6 +77,23 @@ jobs:
          - name: Linting Auth 
            run: golangci-lint run  ./authdb
            working-directory: auth
-           
+  Build:
+      runs-on: ubuntu-latest
+      needs: [CI-Weathr,CI-AUTH, CI-UI]
+      steps:
+        -  name: Login to DockerHub
+           uses: docker/login-action@v1 
+           with:
+                username: ${{ secrets.DOCKER_USER}}
+                password: ${{ secrets.DOCKER_TOKEN }}
+
+        - name: Build and push
+          id: docker_build
+          uses: docker/build-push-action@v2
+          with:
+            context: ./weather
+            file: ./weather/Dockerfile
+            push: true
+            tags: saliibrahem/BackEnd:${{ github.run_number }}                
         
         
