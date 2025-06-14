@@ -92,7 +92,7 @@ jobs:
           uses: docker/build-push-action@v6
           with:
             context: ./weather
-            file: ./weather/Dockerfile
+            file: Dockerfile
             push: true
             tags: saliibrahem/backend:${{ github.run_number }}                
         
