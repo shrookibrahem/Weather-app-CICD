@@ -1,7 +1,7 @@
 name: Weather-App-Ci
 
-on:
-    workflow_dispatch:
+on: push
+    
 
 jobs:
   linting:
