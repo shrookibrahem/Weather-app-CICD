@@ -47,15 +47,31 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Trivy for verify code
+      - name: Install Trivy 
         run: |
           wget https://github.com/aquasecurity/trivy/releases/download/v0.52.1/trivy_0.52.1_Linux-64bit.tar.gz
           tar -xzf trivy_0.52.1_Linux-64bit.tar.gz
 
-      - name: Scan code files with trivy
+      - name: Scan code  with trivy
         run: |
             ./trivy fs ./UI
 
-      
+  CI-AUTH:
+     runs-on: ubuntu-latest
+     steps:
+         - uses: actions/checkout@v3
+
+         - name: Set up Go
+           uses: actions/setup-go@v4
+           
+
+         - name: Scan Cod 
+           run: go vet ./auth/authdb/authdb.go
+
+         - name: Install golangci-lint
+           run: go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+
+         - name: Linting Auth 
+           run: golangci-lint run  ./auth   
         
         
