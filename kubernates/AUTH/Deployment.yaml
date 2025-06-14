@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: weatherapp-auth
+  labels:
+    app: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: weatherapp-auth
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: weatherapp-auth
+    spec:
+      containers:
+      - name: weatherapp-auth-container
+        image: bagato220/auth:15520732093
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+        env:
+        - name: DB_HOST
+          value: db-service ### The Name of Service of The DB
+        - name: DB_USER
+          value: authuser
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-secret
+              key: auth-password
+        - name: DB_NAME
+          value: weatherapp
+        
+        - name: DB_PORT
+          value: "3306"
+        
+        - name: SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: db-secret
+              key: secret-key
