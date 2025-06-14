@@ -63,6 +63,8 @@ jobs:
 
          - name: Set up Go
            uses: actions/setup-go@v4
+           with:
+             go-version: '1.20'
            
 
          - name: Scan Cod 
@@ -72,6 +74,6 @@ jobs:
            run: go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
 
          - name: Linting Auth 
-           run: golangci-lint run  ./auth   
+           run: golangci-lint run  ./auth/authdb 
         
         
