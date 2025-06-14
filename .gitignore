@@ -1,0 +1,22 @@
+# Ignore terraform directory and files
+.terraform/
+.terraform.lock.hcl
+
+# Ignore files starting with a dot
+#.*
+
+# Local files
+terraform.tfstate
+terraform.tfstate.backup
+
+# Crash logs
+crash.log
+
+# CLI configuration files
+.terraform.rc
+terraform.rc
+
+# OS files
+.DS_Store
+Thumbs.db
+
