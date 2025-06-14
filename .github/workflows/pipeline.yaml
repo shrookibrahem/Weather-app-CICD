@@ -68,12 +68,15 @@ jobs:
            
 
          - name: Scan Cod 
-           run: go vet ./auth/authdb/authdb.go
+           run: go vet ./authdb/authdb.go
+           working-directory: auth
 
          - name: Install golangci-lint
            run: go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
 
          - name: Linting Auth 
-           run: golangci-lint run  ./auth
+           run: golangci-lint run  ./authdb
+           working-directory: auth
+           
         
         
