@@ -1,0 +1,26 @@
+name: Weather-App-Ci
+
+on:
+    push:
+    workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+           python-version: '3.9'
+
+      - name: Run Testing
+        run: |
+            python -m venv .venv
+            source .venv/bin/activate
+            pip install -r weather/requirements.txt
+            python -m unittest discover weather
+
+
