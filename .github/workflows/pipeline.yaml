@@ -5,8 +5,33 @@ on:
     workflow_dispatch:
 
 jobs:
-  test:
+  linting:
     runs-on: ubuntu-latest
+
+    
+    
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+           python-version: '3.9'
+
+      - name: Run Linting
+        run: |
+            python -m venv .venv
+            source .venv/bin/activate
+            pip install flake8
+            flake8 weather/main.py
+
+
+  test:
+    needs: linting
+    runs-on: ubuntu-latest
+            
+            
+
     
     steps:
       - uses: actions/checkout@v3
@@ -22,5 +47,15 @@ jobs:
             source .venv/bin/activate
             pip install -r weather/requirements.txt
             python -m unittest discover weather
+
+
+  Build:
+        runs-on: ubuntu-latest
+        needs: test
+        steps:
+            -   name: only test
+                run : echo "Done"
+
+
 
 
