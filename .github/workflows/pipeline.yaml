@@ -1,4 +1,4 @@
-name: Weather-App-Ci
+name: Weather-App-CiCD
 
 on: push
     
