@@ -126,10 +126,12 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Replace Tags
-        run : |
-          sed -i "s/{{BACKEND_TAG}}/${{github.run_number}}/" kubernates/weathersvc/Deployment.yaml
-          sed -i "s/{{FRONTEND_TAG}}/${{github.run_number}}/" kubernates/UI/Deployment.yaml
-          sed -i "s/{{DB_TAG}}/${{github.run_number}}/" kubernates/AUTH/Deployment.yaml
+        run: |
+          sed -i "s/{{BACKEND_TAG}}/${GITHUB_RUN_NUMBER}/" kubernates/weathersvc/Deployment.yaml
+          sed -i "s/{{FRONTEND_TAG}}/${GITHUB_RUN_NUMBER}/" kubernates/UI/Deployment.yaml
+          sed -i "s/{{DB_TAG}}/${GITHUB_RUN_NUMBER}/" kubernates/AUTH/Deployment.yaml
+        env:
+          GITHUB_RUN_NUMBER: ${{ github.run_number }}
 
       - name: Push updated manifest back to Git
         run: |
