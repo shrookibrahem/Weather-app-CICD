@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: weatherapp-auth-container
-        image: bagato220/auth:15520732093
+        image: saliibrahem/backend:{{DB_TAG}}
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
