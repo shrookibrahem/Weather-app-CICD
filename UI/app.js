@@ -179,8 +179,6 @@ app.use((err, req, res, next) => {
     res.status(500).send('Internal Server Error');
 });
 
-// Start the server
-app.listen(port, () => {
-    console.log(`Weather app listening at http://localhost:${port}`);
+app.listen(port, '0.0.0.0', () => {
+    console.log(`Weather app listening at http://0.0.0.0:${port}`);
 });
-
