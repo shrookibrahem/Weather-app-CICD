@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: weatherapp-ui-container
-        image: saliibrahem/backend:{{FRONTEND_TAG}}
+        image: saliibrahem/backend:19
         env:
         - name: AUTH_HOST
           value: service-auth
