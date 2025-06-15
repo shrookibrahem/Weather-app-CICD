@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: weather-container
-        image: saliibrahem/backend:{{BACKEND_TAG}}
+        image: saliibrahem/backend:24
         ports:
         - containerPort: 5000
           name: http-get
