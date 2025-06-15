@@ -3,7 +3,7 @@
 .terraform.lock.hcl
 
 # Ignore files starting with a dot
-#.*
+.terraform.tfstate.lock.info
 
 # Local files
 terraform.tfstate
